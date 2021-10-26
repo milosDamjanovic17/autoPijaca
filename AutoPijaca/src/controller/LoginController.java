@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.User;
+import model.UserType;
 import service.LoginService;
 
 /**
@@ -32,18 +34,30 @@ public class LoginController extends HttpServlet {
 		
 		boolean nullProvera = servis.loginNullProvera(userName, password);
 		if(nullProvera) {
-			System.out.println("Sva polja su popunjena...");
+			
 			// trazimo da li postoji user u DB
-			// ako user postoji vrati TRUE preusmeri ga na njegovu stranu, ako ne postoji vrati FALSE
-			boolean userLoginProvera = servis.userLoginProvera(userName,password);
-			if(userLoginProvera) {
+			// ako user postoji vrati != null objekat preusmeri ga na njegovu stranu, ako ne postoji vrati null
+			User userLoginProvera = servis.userLoginProvera(userName,password);
+			if(userLoginProvera != null) {
 				System.out.println("========> USER EXISTS");
+				//prebaci ga na stranicu za kupca
+				if (userLoginProvera.getUserType().equals(UserType.BUYER)) {
+					//prebaci ga na stranicu za KUPCA/BUYER
+					response.sendRedirect("jsp/buyer.jsp");
+				}else if(userLoginProvera.getUserType().equals(UserType.SELLER)) {
+					//prebaci ga na stranicu za PRODAVCA/SELLER
+					response.sendRedirect("jsp/seller.jsp");
+				}else {
+					//prebaci ga na admin stranicu
+					response.sendRedirect("jsp/admin.jsp");
+				}
 			}else {
 				System.out.println("========> FAIL");
+				response.sendRedirect("html_stranica/failed_login.html");
 			}
-			
+				
 		}else {
-			System.out.println("moras popuniti sva polja!");
+			response.sendRedirect("html_stranica/failed_login.html");
 		}
 		
 	}

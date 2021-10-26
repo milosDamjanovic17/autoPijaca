@@ -36,35 +36,37 @@ public class RegistracijaLoginLogic {
 		
 	}
 
-	public boolean userLoginProvera(String userName, String password) {
+	public User userLoginProvera(String userName, String password) {
 		
-		Session session = sf.openSession();
+		User user = null;
+		Session session = sf.openSession(); // sa getCurrentSessionom ne moramo posle da pozivamo zatvaranje sesije
 			session.beginTransaction();
 			
 			try {
 				
 				String hql = "from User where username = :inputUserName and password = :inputPassword";
 				Query query = session.createQuery(hql);
-				query.setParameter("inputUserName", userName);
-				query.setParameter("inputPassword", password);
-				
-				User user =(User)query.getSingleResult();
+					query.setParameter("inputUserName", userName);
+					query.setParameter("inputPassword", password);
+					
+				user = (User)query.getSingleResult();
 				if(user != null) {
 					System.out.println("user found");
+					session.getTransaction().commit();
+					return user;
 				}else {
 					System.out.println("user not found");
+					session.getTransaction().commit();
+					return null;
 				}
-				session.getTransaction().commit();
-				return true;
 			} catch (Exception e) {
 				System.out.println("Nesto je puklo u userLoginProvera metodi");
 				e.printStackTrace();
 				session.getTransaction().rollback();
-				return false;
-			} finally {
+				return null;
+			}finally {
 				session.close();
 			}
-		
 	}
 	
 

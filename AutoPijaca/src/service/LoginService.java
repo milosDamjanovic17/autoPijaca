@@ -2,6 +2,7 @@ package service;
 
 import common.CommonMethods;
 import dao.RegistracijaLoginLogic;
+import model.User;
 import validacija.Validacija;
 
 public class LoginService {
@@ -17,12 +18,12 @@ public class LoginService {
 	}
 
 	public boolean loginNullProvera(String userName, String password) {
-		// TODO Auto-generated method stub
+		
 		return validacija.loginNullProvera(userName, password);
 	}
 
-	public boolean userLoginProvera(String userName, String password) {
-		// TODO Auto-generated method stub
+	public User userLoginProvera(String userName, String password) {
+		
 		return logic.userLoginProvera(userName,password);
 	}
 	

@@ -61,8 +61,10 @@ public class Validacija {
 	public boolean loginNullProvera(String userName, String password) {
 		
 		if(userName.isEmpty() || password.isEmpty()) {
+			System.out.println("moras popuniti sva polja!");
 			return false;
 		}else {
+			System.out.println("Sva polja su popunjena...");
 			return true;
 		}
 		
