@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.User;
 import model.UserType;
@@ -40,6 +41,10 @@ public class LoginController extends HttpServlet {
 			User userLoginProvera = servis.userLoginProvera(userName,password);
 			if(userLoginProvera != null) {
 				System.out.println("========> USER EXISTS");
+				//kreiranje httpSession objekta za pravljenje unique strane korisnika
+				HttpSession session = request.getSession();
+				//ubaci usera u HTTPsession object
+				session.setAttribute("userKey", userLoginProvera);
 				//prebaci ga na stranicu za kupca
 				if (userLoginProvera.getUserType().equals(UserType.BUYER)) {
 					//prebaci ga na stranicu za KUPCA/BUYER

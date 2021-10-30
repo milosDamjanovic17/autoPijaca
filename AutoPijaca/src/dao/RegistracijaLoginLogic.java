@@ -6,12 +6,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import model.User;
+import model.UserDetails;
 
 public class RegistracijaLoginLogic {
 
 	SessionFactory sf = HibernateUtil.createSessionFactory();
 	
 	public boolean upisiUsera(User user) {
+		
+		UserDetails details = new UserDetails();
+			details.setUser(user);
 		
 		Session session = sf.openSession();
 			session.beginTransaction();
@@ -20,6 +24,7 @@ public class RegistracijaLoginLogic {
 			try {
 				
 				session.persist(user); //cuvam usera u DB
+				session.persist(details);
 				
 				session.getTransaction().commit();
 				System.out.println("User " +user.getUserName() +" upisan u DB");
