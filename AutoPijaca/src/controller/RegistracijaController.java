@@ -79,17 +79,7 @@ public class RegistracijaController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("Dobrodosli u doPost metodu...");
-		String userName = request.getParameter("username");
-		String password = request.getParameter("password");
-		String repeatedPassword = request.getParameter("repeatedPassword");
-		String tipUsera = request.getParameter("tipUsera");
-		
-		System.out.println("Nasi parametri su: ");
-		System.out.println("User name: " +userName);
-		System.out.println("Password: " +password);
-		System.out.println("RepeatedPass: " +repeatedPassword);
-		System.out.println("Type Usera: " +tipUsera);
+
 	}
 
 }

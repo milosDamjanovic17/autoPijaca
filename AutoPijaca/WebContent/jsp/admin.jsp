@@ -11,29 +11,17 @@
 </head>
 <body>
 
+	<!-- METOD ZA ISPIS IMENA USERA KOJI SE ULOGOVAO -->
 	<%
-	
 		User user = (User) session.getAttribute("userKey");
-	
 	%>
 	
 	<h1>Dobrodosao <%= user.getUserName() %>!</h1>
 	
-	<p>forma za pretragu svih usera</p>
-	<form action="../AdminController" method="get">
-		
-		<input type ="submit" value="Search">
-	</form>
+
 	
-	<%
-		List<User> userList = (List<User>)request.getAttribute("userListKey");
-		int duzinaListe = 0;
-		if(userList != null){
-			duzinaListe = userList.size();
-		}
-	%>
-	
-	<p>U listi user ima <%=duzinaListe %> redova</p>
+	<a href = "dodajBalance.jsp">DODAJ BALANCE</a>
+	<a href = "sviUseri.jsp">LIST SVIH USERA</a>
 
 
 </body>

@@ -27,15 +27,13 @@ public class AdminController extends HttpServlet {
 		AdminService service = new AdminService();
 		
 		List<User> userList = new ArrayList<>();
-		
-		userList = service.vratiSveUsere();
+			userList = service.vratiSveUsere();
 		
 		
 		if(userList != null) {
-			//RequestDispatcher dispatcher = request.getRequestDispatcher(userList);
-			System.out.println("Lista usera ima clanova: " +userList.size());
 			request.setAttribute("userListKey", userList);
-			response.sendRedirect("jsp/admin.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/sviUseri.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 
