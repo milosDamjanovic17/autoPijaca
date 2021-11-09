@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 
 import model.User;
 import model.UserDetails;
+import model.UserType;
 
 public class AdminDAO {
 
@@ -103,6 +104,40 @@ public class AdminDAO {
 			}
 			
 	}
-	
+
+	public List<User> vratiUserePoUserTypeu(UserType type) {
+		
+		List<User> localUserTypeList = new ArrayList<>();
+		Session session = sf.openSession();
+			session.beginTransaction();
+			
+			
+			try {
+				
+				String hql = "from User";
+				
+				if(type != null) {
+					hql += " where userType = :typeInput";
+				}
+				
+				Query query = session.createQuery(hql);
+				
+				if(type != null) {
+					query.setParameter("typeInput", type);
+				}
+				
+				localUserTypeList = (List <User>)query.getResultList();
+				session.getTransaction().commit();
+				return localUserTypeList;
+			} catch (Exception e) {
+				System.out.println("Nesto je puklo u metodu vratiUserePoUserTypeu...");
+				e.printStackTrace();
+				session.getTransaction().rollback();
+				return null;
+			} finally {
+				session.close();
+			}
+
+	}
 	
 }

@@ -28,5 +28,18 @@ public class CommonMethods {
 		
 	}
 
+	public UserType vratiUserType(String userType) {
+		
+		UserType localType = null;
+		
+		if(userType.equals("buyer")) {
+			localType = UserType.BUYER;
+		}else if(userType.equals("seller")) {
+			localType = UserType.SELLER;
+		}
+		
+		return localType;
+	}
+
 
 }

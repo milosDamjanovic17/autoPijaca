@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet {
 			User userLoginProvera = servis.userLoginProvera(userName,password);
 			if(userLoginProvera != null) {
 				System.out.println("========> USER EXISTS");
-				//kreiranje httpSession objekta za pravljenje unique strane korisnika
+				//instanca httpSession objekta za pravljenje unique strane korisnika
 				HttpSession session = request.getSession();
 				//ubaci usera u HTTPsession object
 				session.setAttribute("userKey", userLoginProvera);
