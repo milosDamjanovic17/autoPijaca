@@ -36,7 +36,6 @@
 
 	
 	<a href = "dodajBalance.jsp">DODAJ BALANCE</a>
-	<a href = "sviUseri.jsp">LIST SVIH USERA</a>
 
 
 </body>

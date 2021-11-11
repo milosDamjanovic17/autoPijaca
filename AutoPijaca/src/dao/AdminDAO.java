@@ -95,7 +95,7 @@ public class AdminDAO {
 				session.getTransaction().commit();
 				return true;
 			} catch (Exception e) {
-				System.out.println("Nesto je puklo u dodajBalanceUseru");
+				System.out.println("Nesto je puklo u dodajBalanceUseru...");
 				e.printStackTrace();
 				session.getTransaction().rollback();
 				return false;
@@ -105,6 +105,7 @@ public class AdminDAO {
 			
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<User> vratiUserePoUserTypeu(UserType type) {
 		
 		List<User> localUserTypeList = new ArrayList<>();
