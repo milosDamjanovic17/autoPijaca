@@ -41,5 +41,15 @@ public class CommonMethods {
 		return localType;
 	}
 
+	public boolean isDoubleCheck(String balance) {
+		
+		if(balance.matches("[0-9]+")) {
+			return true;
+		}else {
+			return false;
+		}
+
+	}
+
 
 }

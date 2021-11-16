@@ -26,7 +26,10 @@ public class AddBalanceController extends HttpServlet {
 		String balance = request.getParameter("balance");
 		
 		// DOMACI: check da li je prosledjen double, odnosno da li su svi karakteri DIGIT
+		//boolean isDoubleCheck = service.isDoubleCheck(balance);
+		
 		Double parseBalanceFromString = Double.parseDouble(balance);
+
 		User user = service.returnUserFromUsername(username);
 		
 		if(user != null) {
