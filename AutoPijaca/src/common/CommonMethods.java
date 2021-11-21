@@ -44,8 +44,10 @@ public class CommonMethods {
 	public boolean isDoubleCheck(String balance) {
 		
 		if(balance.matches("[0-9]+")) {
+			System.out.println("Unet balance je OK...");
 			return true;
 		}else {
+			System.out.println("Unet balance mora da ima iskljucivo cifre!");
 			return false;
 		}
 

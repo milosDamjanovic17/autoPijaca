@@ -141,4 +141,54 @@ public class AdminDAO {
 
 	}
 	
+	public User returnUserFromId(String userId) {
+		
+		User user = null;
+		
+		int idUser = Integer.parseInt(userId);
+		
+		Session session = sf.openSession();
+			session.beginTransaction();
+			
+			try {
+				
+				user = session.get(User.class, idUser);
+					
+				
+				System.out.println("Retrieveing user from DB...");
+				session.getTransaction().commit();
+				return user;
+			} catch (Exception e) {
+				System.out.println("Nesto je puklo u returnUserFromID metodi.....");
+				e.printStackTrace();
+				session.getTransaction().rollback();
+				return null;
+			} finally {
+				session.close();
+			}
+
+	}
+
+	public UserDetails returnDetailsFromUser(User user) {
+		
+		Session session = sf.openSession();
+			session.beginTransaction();
+			
+			try {
+					
+				UserDetails persistedUserFromDB = session.get(UserDetails.class, user.getIdUser());
+				System.out.println("Retrieving from UserDetails........");
+				session.getTransaction().commit();
+				return persistedUserFromDB;
+			} catch (Exception e) {
+				System.out.println("Nesto je puklo u returnFromUsername metodi.....");
+				e.printStackTrace();
+				session.getTransaction().rollback();
+				return null;
+			} finally {
+				session.close();
+			}
+
+	}
+	
 }

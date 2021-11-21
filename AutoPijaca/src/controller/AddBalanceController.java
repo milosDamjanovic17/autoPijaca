@@ -26,24 +26,32 @@ public class AddBalanceController extends HttpServlet {
 		String balance = request.getParameter("balance");
 		
 		// DOMACI: check da li je prosledjen double, odnosno da li su svi karakteri DIGIT
-		//boolean isDoubleCheck = service.isDoubleCheck(balance);
-		
-		Double parseBalanceFromString = Double.parseDouble(balance);
-
-		User user = service.returnUserFromUsername(username);
-		
-		if(user != null) {
+		boolean isDoubleCheck = service.isDoubleCheck(balance);
+		if(isDoubleCheck) {
 			
-			boolean daLiJeDodatBalance = service.dodajBalanceUseru(user,parseBalanceFromString);
-			if(daLiJeDodatBalance) {
-				response.sendRedirect("html_stranica/successfullyAdeddbalanceToUser.html");
+			Double parseBalanceFromString = Double.parseDouble(balance);
+
+			User user = service.returnUserFromUsername(username);
+			
+			if(user != null) {
+				
+				boolean daLiJeDodatBalance = service.dodajBalanceUseru(user,parseBalanceFromString);
+				if(daLiJeDodatBalance) {
+					response.sendRedirect("html_stranica/successfullyAdeddbalanceToUser.html");
+				}else {
+					response.sendRedirect("html_stranica/userNameFailForAddingBalance.html");
+				}
+				
 			}else {
 				response.sendRedirect("html_stranica/userNameFailForAddingBalance.html");
 			}
 			
+			
 		}else {
-			response.sendRedirect("html_stranica/userNameFailForAddingBalance.html");
+			response.sendRedirect("html_stranica/addingBalanceInvalidBalanceType.html");
 		}
+		
+
 	}
 
 }
