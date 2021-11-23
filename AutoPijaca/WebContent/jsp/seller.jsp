@@ -16,7 +16,16 @@
 	
 	<a href = "editProfile.jsp">edit profile</a>
 	
-
+	
+	<form action="../AddCarController" method = "get">
+		<input type = "hidden" name = "idUser" value = "${userKey.idUser}">
+		Manufacturer: <input type = "text" name = "manufacturer"><br>
+		Model: <input type = "text" name = "model"><br>
+		Price: <input type = "text" name = "price"><br>
+		Year: <input type = "text" name = "year"><br>
+		Register: <input type = "checkBox" name = "isRegistered"><br>
+		<input type = "submit" value = "ADD CAR">
+	</form>
 
 </body>
 </html>

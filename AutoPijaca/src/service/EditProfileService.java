@@ -27,11 +27,6 @@ public class EditProfileService {
 		return dao.setUserDetails(firstName, lastName, phone, email, country, city, street, details);
 	}
 
-	
-	
-	
-	
-	
-	
+
 
 }
