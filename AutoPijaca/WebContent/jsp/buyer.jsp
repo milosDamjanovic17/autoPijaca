@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.User" %>    
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="model.User" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,41 +9,42 @@
 <title>AutoPijaca | BUYER</title>
 </head>					<!--  ovo je html komentar -->
 <body>
-
-
-	<%
-		User user = (User) session.getAttribute("userKey");
+	<jsp:useBean id="userKey" scope="session" class="model.User"></jsp:useBean>
+	<h1>WELCOME ${userKey.userName}</h1>
 	
-	%>
+	<p>CAR SEARCH</p>
+	<form action="../ChosenCarsController" method="get">
 	
-	<h1>Dobrodosao <%=user.getUserName() %>!</h1>
+	Manufacturer: <input type="text" name="manufacturer"><br>
+	Model: <input type="text" name="model"><br>
+	Cena od: <input type="text" name="priceFrom"><br>
+	Cena do: <input type="text" name="priceTo"><br>
+	Year from: <select name="yearFrom">
+			<option value="0"></option>
+			<c:forEach var="i" begin="2000" end="2021">
+				<option value="${i}"> ${i}</option>
+			</c:forEach>
+		</select>
+	Year to: <select name="yearTo">
+			<option value="0"></option>
+			<c:forEach var="i" begin="2000" end="2021">
+				<option value="${i}"> ${i}</option>
+			</c:forEach>
+		</select>
+	<br>
+	Registration:<select name="registration">
+					<option value="1">registrovan</option>
+					<option value="0">neregistrovan</option>
+					<option value="2">sve</option>
+				</select>
+				
+	<br>
+	<input type="submit" value="PRETRAZI">				
+	
+	</form>
 	
 	
-
 	
-	
-	<p>Ovo je DINAMICKA tabela</p>
-	<table border="1">
-		<tr>
-			<th>redni broj dinamicke tabele</th>
-			<th>ime iz dinamicke tabele</th>
-		</tr>
-	
-	<%
-		//ovo je skriptlet
-		for(int i = 1; i <= 10; i++){
-	
-	%>
-		<tr>
-			<td><%=i %> </td>
-			<td>ime<%=i %> </td>
-		</tr>
-		
-	<%
-	}
-	%>
-	
-	</table>
 
 </body>
 </html>

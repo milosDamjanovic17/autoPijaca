@@ -12,8 +12,16 @@
 
 	<jsp:useBean id = "userKey" scope = "session" class = "model.User"></jsp:useBean>
 	<h1>Edit profile ${userKey.userName}</h1>
+	
+	<c:if test="${userKey.userType eq 'BUYER'}">
+	<a href = "jsp/buyer.jsp">back to buyer home page</a> <br>
+	</c:if>
+	
+	<c:if test="${userKey.userType eq 'SELLER'}">
+	<a href = "jsp/seller.jsp">back to seller home page</a> <br>
+	</c:if>
+	
 
-	<a href = "seller.jsp">back to home page</a> <br>
 	
 	<form action="../EditProfileController" method="post">
 		First name:<input type = "text" name="firstName"><br><br>

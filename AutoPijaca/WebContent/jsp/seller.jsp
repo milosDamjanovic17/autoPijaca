@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href=../myCSS/sellerHome.css rel="stylesheet" /> 
 <title>AutoPijaca | SELLER</title>
 </head>
 <body>
@@ -14,17 +15,17 @@
 	<h1>Welcome ${userKey.userName}</h1>
 	
 	
-	<a href = "editProfile.jsp">edit profile</a>
+	<a class="edit-profile" href = "editProfile.jsp">edit profile</a>
 	
 	
-	<form action="../AddCarController" method = "get">
+	<form class="add-car" action="../AddCarController" method = "get">
 		<input type = "hidden" name = "idUser" value = "${userKey.idUser}">
 		Manufacturer: <input type = "text" name = "manufacturer"><br>
 		Model: <input type = "text" name = "model"><br>
 		Price: <input type = "text" name = "price"><br>
 		Year: <input type = "text" name = "year"><br>
 		Register: <input type = "checkBox" name = "isRegistered"><br>
-		<input type = "submit" value = "ADD CAR">
+		<input class="add-car-button" type = "submit" value = "ADD CAR">
 	</form>
 
 </body>

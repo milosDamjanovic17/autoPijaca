@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.User;
 import model.UserDetails;
+import model.UserType;
 import service.EditProfileService;
 
 /**
@@ -43,7 +44,13 @@ public class EditProfileController extends HttpServlet {
 			//2. Setuj UserDetails i sacuvaj u bazi izmene
 			boolean editUserDetailsCheck = service.setUserDetails(firstName, lastName, phone, email, country, city, street, details);
 			if(editUserDetailsCheck) {
+				if(user.getUserType().equals(UserType.SELLER)) {
 				response.sendRedirect("jsp/seller.jsp");
+				}else if(user.getUserType().equals(UserType.BUYER)){
+					response.sendRedirect("jsp/buyer.jsp");
+				}else {
+					response.sendRedirect("jsp/admin.jsp");
+				}
 			}else {
 				response.sendRedirect("html_stranica/failed_UserDetails.html");
 			}

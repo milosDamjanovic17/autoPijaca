@@ -1,0 +1,45 @@
+@charset "UTF-8";
+body{
+	font-family: sans-serif;
+	font-size: 24px;
+	color: #a6a6a6;
+}
+
+h1{
+	color: #ff9900;
+	background-color: #8533ff;
+	text-align: center;
+	text-transform: uppercase;
+	border-top: 5px solid #ff9900;
+	border-bottom: 5px solid #ff9900;	
+}
+
+.add-car-button:hover{
+	color: #ff9900;
+	background-color: #8533ff;
+	border: none;
+}
+
+.add-car{
+	background-color: #d9d9d9;
+	color: #8533ff;
+	text-transform: uppercase;
+	border-top: 2px solid #ff9900;
+	border-bottom: 2px solid #ff9900;
+		
+}
+
+a{
+	font-size: 20px;
+}
+a:link, a:visited{
+	text-decoration: none;
+	color: black;
+}
+
+a:hover, a:active{
+	background-color: #8533ff;
+	color: white;
+	text-decoration: underline wavy #ff9900;
+	
+}
