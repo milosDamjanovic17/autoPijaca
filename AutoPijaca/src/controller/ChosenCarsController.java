@@ -1,12 +1,16 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Car;
 import service.ChosenCarsService;
 
 /**
@@ -31,25 +35,31 @@ public class ChosenCarsController extends HttpServlet {
 		String yearTo = request.getParameter("yearTo");
 		String registration = request.getParameter("registration");
 		
+		Double priceFrom = null;
+		Double priceTo = null;
 		//if null, sredi
-		Double priceFrom = Double.parseDouble(priceFromForm);
-		Double priceTo = Double.parseDouble(priceToForm);
+		if(priceFromForm == null || !priceFromForm.equals("")) {
+			priceFrom = Double.parseDouble(priceFromForm);
+		}
+		
+		if(priceToForm == null || !priceToForm.equals("")) {
+			priceTo = Double.parseDouble(priceToForm);
+		}
+		
 		
 		Boolean isRegister = service.pretvoriStringRegistracijuUboolean(registration);
 		
 		
-		System.out.println("manufacturer: " +manufacturer);
-		System.out.println("model: " +model);
-		System.out.println("priceFrom: " +priceFrom);
-		System.out.println("priceTo: " +priceTo);
-		System.out.println("myearFrom: " +yearFrom);
-		System.out.println("yearTo: " +yearTo);
-		System.out.println("registration: " +registration);
+		List<Car> listaAutomobila = service.getChosenCars(manufacturer, model, priceFrom, priceTo, yearFrom, yearTo, isRegister);
 		
-		
-		
-		
-		
+		if(listaAutomobila != null) {
+			request.setAttribute("listaAutomobila", listaAutomobila);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/chosenCars.jsp");
+			dispatcher.forward(request, response);
+		}else {
+			response.sendRedirect("jsp/buyer.jsp");
+		}
+
 	}
 
 }
