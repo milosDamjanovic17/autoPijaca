@@ -18,7 +18,7 @@ public class Car {
 	private String year;
 	private Boolean isRegistered;
 	@ManyToOne
-	private UserDetails userDetails;
+	private UserDetails userDetails; //ONAJ CIJI JE AUTO
 	
 	public Integer getIdCar() {
 		return idCar;

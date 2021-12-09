@@ -37,6 +37,7 @@ public class ChosenCarsDAO {
 		return returnValue;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Car> getChosenCars(String manufacturer, String model, Double priceFrom, Double priceTo, String yearFrom,
 			String yearTo, Boolean isRegister) {
 		
@@ -125,6 +126,29 @@ public class ChosenCarsDAO {
 				session.close();
 			}
 
+	}
+
+	public Car vratiCarPoId(String idCar) {
+		
+		Session session = sf.openSession();
+			session.beginTransaction();
+			
+			try {
+				
+				Car car = session.get(Car.class, Integer.parseInt(idCar));
+				System.out.println("preuzimam auto sa id = " +idCar);
+				
+				session.getTransaction().commit();
+				return car;
+			} catch (Exception e) {
+				System.out.println("nesto je puklo u vratiCarPoId metodi......");
+				e.printStackTrace();
+				session.getTransaction().rollback();
+				return null;
+			} finally {
+				session.close();
+			}
+		
 	}
 	
 	

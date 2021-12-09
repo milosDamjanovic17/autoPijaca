@@ -10,7 +10,7 @@
 </head>					<!--  ovo je html komentar -->
 <body>
 	<jsp:useBean id="userKey" scope="session" class="model.User"></jsp:useBean>
-	<h1>WELCOME ${userKey.userName}</h1>
+	<h1>WELCOME ${userKey.userName} INSUFFICIENT BALANCE</h1>
 	
 	<a href="logout.jsp" class="logoutLink"> <button type="button">LOG OUT</button></a>
 	

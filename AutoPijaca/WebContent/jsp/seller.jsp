@@ -14,6 +14,8 @@
 	<jsp:useBean id = "userKey" scope = "session" class = "model.User"></jsp:useBean>
 	<h1>Welcome ${userKey.userName}</h1>
 	
+	<a href="logout.jsp" class="logoutLink"> <button type="button">LOG OUT</button></a>
+	
 	
 	<a class="edit-profile" href = "editProfile.jsp">edit profile</a>
 	
